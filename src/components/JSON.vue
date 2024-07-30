@@ -11,7 +11,7 @@
       <!-- Activity 6: Render a list containing author names and their birth years. Hint: Make use of the v-for directive to iterate through the array of authors. -->
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li v-for="author in authors" :key="author.id">
+        <li v-for="author in authors" :key="author.id" :class="{ highlight: author.name === 'George Orwell' }">
           {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -21,7 +21,7 @@
       <p>Authors born after 1850:</p>
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li v-for="author in modernAuthors" :key="author.id"> 
+        <li v-for="author in modernAuthors" :key="author.id" :class="{ highlight: author.name === 'George Orwell' }"> 
           {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -95,8 +95,14 @@
           {{ sellers }}
         </li>
        </ul>
-      <p>We operate in:</p>
-      <p>Our #1 seller:</p>
+      <p>We operate in:
+        <ul>
+        <li v-for="address in bookstores.countries" :key="address">
+          {{ address }}
+        </li>
+      </ul>
+      </p>
+      <p>Our #1 seller:{{ bookstores.topSellers[0] }}</p>
     </section>
 
     <section class="lab-section">
@@ -105,14 +111,18 @@
       <!-- Activity 13: Toggle the message visibility when the button is clicked. -->
       <!-- TODO: CODE TO TOGGLE MESSAGE VISIBILITY HERE. Hint: Use the v-if directive. -->
       <button @click="showMessage = !showMessage">Toggle Message</button>
-      <p class="message success">✨ You're a Vue superstar! ✨</p>
+      <p v-if="showMessage" class="message success">✨ You're a Vue superstar! ✨</p>
       <p>Click the button to see a message.</p>
     </section>
 
     <section class="lab-section">
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
-
+      <ul>
+        <li v-for="author in authors" :key="author.id" :class="{ highlight: author.name === 'George Orwell' }">
+          {{ author.name }} ({{ author.birthYear }})
+        </li>
+      </ul>
     </section>
   </div>
 </template>
