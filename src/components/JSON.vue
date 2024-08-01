@@ -114,8 +114,8 @@
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
       <ul>
-        <li v-for="author in authors" :key="author.id" :class="{ highlight: author.name === 'George Orwell' }">
-          {{ author.name }} ({{ author.birthYear }})
+        <li v-if="orwell" :class="{ highlight: orwell.name}">
+          {{ orwell.name }} ({{ orwell.birthYear }})
         </li>
       </ul>
     </section>
