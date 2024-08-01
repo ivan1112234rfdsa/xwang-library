@@ -11,7 +11,7 @@
       <!-- Activity 6: Render a list containing author names and their birth years. Hint: Make use of the v-for directive to iterate through the array of authors. -->
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li v-for="author in authors" :key="author.id" :class="{ highlight: author.name === 'George Orwell' }">
+        <li v-for="author in authors" :key="author.id">
           {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -21,7 +21,7 @@
       <p>Authors born after 1850:</p>
       <!-- TODO: CODE TO RENDER LIST OF AUTHORS HERE -->
       <ul>
-        <li v-for="author in modernAuthors" :key="author.id" :class="{ highlight: author.name === 'George Orwell' }"> 
+        <li v-for="author in modernAuthors" :key="author.id"> 
           {{ author.name }} ({{ author.birthYear }})
         </li>
       </ul>
@@ -56,13 +56,13 @@
 
       <h3>Accessing Properties</h3>
       <p>
-        Company:{{ bookstores.name }}
+        Company: {{ bookstores.name }}
         <!-- Activity 9a: Get the company name from the bookstores object. -->
         <!-- TODO: CODE TO GET COMPANY NAME HERE -->
       </p>
 
       <p>
-        Total Stores:{{ bookstores.totalStores }}
+        Total Stores: {{ bookstores.totalStores }}
         <!-- Activity 9b: Get the total number of stores from the bookstores object. -->
         <!-- TODO: CODE TO GET TOTAL STORES HERE -->
       </p>
@@ -83,18 +83,13 @@
       <!-- TODO: CODE TO RENDER LIST OF OPENING HOURS HERE -->
        <ul>
         <li v-for="(hours, day) in bookstores.openingHours" :key="day">
-          {{ day }}: {{ hours.open }} --- {{ hours.close }}
+          {{ day }}: {{ hours.open }} --> {{ hours.close }}
         </li>
        </ul>
 
       <h3>Working with Arrays in Objects</h3>
       <!-- Activity 12: Get the top sellers from the bookstores object. -->
       <!-- TODO: CODE TO GET TOP SELLERS HERE -->
-       <ul>
-        <li v-for="sellers in bookstores.topSellers" :key="sellers">
-          {{ sellers }}
-        </li>
-       </ul>
       <p>We operate in:
         <ul>
         <li v-for="address in bookstores.countries" :key="address">
@@ -102,7 +97,7 @@
         </li>
       </ul>
       </p>
-      <p>Our #1 seller:{{ bookstores.topSellers[0] }}</p>
+      <p>Our #1 seller: "{{ bookstores.topSellers[0] }}"</p>
     </section>
 
     <section class="lab-section">
@@ -112,7 +107,7 @@
       <!-- TODO: CODE TO TOGGLE MESSAGE VISIBILITY HERE. Hint: Use the v-if directive. -->
       <button @click="showMessage = !showMessage">Toggle Message</button>
       <p v-if="showMessage" class="message success">✨ You're a Vue superstar! ✨</p>
-      <p>Click the button to see a message.</p>
+      <p v-else>Click the button to see a message.</p>
     </section>
 
     <section class="lab-section">
