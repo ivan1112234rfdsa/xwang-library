@@ -114,8 +114,8 @@
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
       <ul>
-        <li v-if="orwell" :class="{ highlight: orwell.name}">
-          {{ orwell.name }} ({{ orwell.birthYear }})
+        <li v-if="orwell">
+          <span :style="{color : textColor, fontSize : fontSize + 'px'}">{{ orwell.name }} ({{ orwell.birthYear }})</span>
         </li>
       </ul>
     </section>
@@ -131,7 +131,8 @@ import authors from "../assets/json/authors.json"
 import bookstores from "../assets/json/bookstores.json"
 
 const showMessage = ref(false)
-
+const textColor = 'blue'
+const fontSize = 18
 // Activity 2: Get authors born after 1850
 const modernAuthors = computed(() => 
   // TODO: CODE TO FILTER ARRAY OF AUTHORS HERE
