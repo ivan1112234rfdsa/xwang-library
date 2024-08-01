@@ -119,7 +119,6 @@
         </li>
       </ul>
     </section>
-    <p>{{ allFamousWorks }}</p>
   </div>
 </template>
 
