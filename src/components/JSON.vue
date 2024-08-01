@@ -31,8 +31,8 @@
       <ul>
         <!-- Activity 8: Render a list of all famous works. Hint: Use the v-for directive to iterate through the array of authors that you have filtered out. -->
         <!-- TODO: CODE TO RENDER LIST OF FAMOUS WORKS HERE -->
-        <li v-for="work in allFamousWorks" :key="work">
-          {{ work }}
+        <li v-for="work in allFamousWorks" :key="work.title">
+          Title: {{ work }}
         </li>
       </ul>
 
@@ -45,7 +45,7 @@
       <!-- TODO: CODE TO RENDER LIST OF AUSTEN'S WORKS HERE -->
        <ul>
         <li v-for="work in austen.famousWorks" :key="work">
-          {{ work.title }}
+          Title: {{ work.title }} ({{ work.year }})
         </li>
        </ul>
     </section>
@@ -124,6 +124,7 @@
         </li>
       </ul>
     </section>
+    <p>{{ allFamousWorks }}</p>
   </div>
 </template>
 
