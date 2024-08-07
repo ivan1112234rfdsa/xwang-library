@@ -57,7 +57,7 @@
          </ul>
       </div>
    </div>
-</div>
+    </div>
 </template>
 
 <script setup>
@@ -96,4 +96,5 @@ import { ref } from 'vue';
    padding: 10px;
    }
 </style>
+
 
