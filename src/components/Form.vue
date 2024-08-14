@@ -18,29 +18,41 @@
                             <input type="password" class="form-control" id="password" 
                             @blur="() => validatePassword(true)"
                             @input="() => validatePassword(false)"
-                            v-model="formData.password">
+                             v-model="formData.password">
                             <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="isAustralian" v-model="formData.isAustralian">
+                                <input type="checkbox" class="form-check-input" id="isAustralian" 
+                                @blur="() => validateResident(true)"
+                                @input="() => validateResident(false)"
+                                v-model="formData.isAustralian">
                                 <label class="form-check-label" for="isAustralian">Australian Resident?</label>
+                                <div v-if="errors.resident" class="text-danger">{{ errors.resident }}</div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="gender" class="form-label">Gender</label>
-                            <select class="form-select" id="gender" v-model="formData.gender">
+                            <select class="form-select" id="gender" 
+                            @blur="() => validateGender(true)"
+                            @input="() => validateGender(false)"
+                            v-model="formData.gender">
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
                             </select>
+                            <div v-if="errors.gender" class="text-danger">{{ errors.gender }}</div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="reason" class="form-label">Reason for joining</label>
-                        <textarea class="form-control" id="reason" rows="3" v-model="formData.reason"></textarea>
+                        <textarea class="form-control" id="reason" rows="3" 
+                        @blur="() => validateReason(true)"
+                        @input="() => validateReason(false)"
+                        v-model="formData.reason"></textarea>
+                        <div v-if="errors.reason" class="text-danger">{{ errors.reason }}</div>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -83,7 +95,11 @@ import { ref } from 'vue';
   
   const submitForm = () => {
     validateName(true);
-    if(!errors.value.username && !errors.value.password) {
+    validatePassword(true);
+    validateResident(true);
+    validateGender(true);
+    validateReason(true);
+    if(!errors.value.username && !errors.value.password && !errors.value.resident && !errors.value.gender && !errors.value.reason) {
         submittedCards.value.push({
           ...formData.value
       });
@@ -136,6 +152,34 @@ import { ref } from 'vue';
         if (blur) errors.value.password = "Password must contain at leaast 1 special character.";
     } else {
         errors.value.password = null;
+    }
+  };
+
+  const validateResident = (blur) => {
+    const resident = formData.value.isAustralian;
+    if (!resident) {
+        if (blur) errors.value.resident = "Please check this option";
+    } else {
+        errors.value.resident = null;
+    }
+  };
+
+  const validateGender = (blur) => {
+    const gender = formData.value.gender;
+    if (!gender) {
+        if (blur) errors.value.gender = "Please choose a gender";
+    } else {
+        errors.value.gender = null;
+    }
+  };
+
+  const validateReason = (blur) => {
+    const reason = formData.value.reason;
+    const minLength = 1;
+    if (reason.length < minLength) {
+        if (blur) errors.value.reason = "Must have a reason";
+    } else {
+        errors.value.reason = null;
     }
   };
 </script>
