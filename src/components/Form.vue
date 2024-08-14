@@ -77,12 +77,21 @@
          </ul>
       </div>
    </div>
+   <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
+    <Column field="username" header="Name"></Column>
+    <Column field="password" header="Password"></Column>
+    <Column field="isAustralian" header="Resident"></Column>
+    <Column field="gender" header="Gender"></Column>
+    <Column field="reason" header="Reason"></Column>
+</DataTable>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-  
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+
   const formData = ref({
       username: '',
       password: '',
