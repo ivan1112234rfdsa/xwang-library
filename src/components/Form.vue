@@ -61,9 +61,10 @@
                         <label for="reason" class="form-label">Reason for joining</label>
                         <textarea class="form-control" id="reason" rows="3" 
                         @blur="() => validateReason(true)"
-                        @input="() => validateReason(false)"
+                        @input="() => {validateReason(false), validateReasonWord(true)}"
                         v-model="formData.reason"></textarea>
                         <div v-if="errors.reason" class="text-danger">{{ errors.reason }}</div>
+                        <div v-if="errors.words" style="color: green;">{{errors.words}}</div>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -132,6 +133,7 @@ import Column from 'primevue/column';
     resident: null,
     gender: null,
     reason: null,
+    words: null
   });
 
   const validateName = (blur) => {
@@ -199,6 +201,15 @@ import Column from 'primevue/column';
         errors.value.confirmPassword = null
     }
 
+  };
+
+
+  const validateReasonWord = (blur) => {
+    if (formData.value.reason.includes('friend')) {
+        if (blur) errors.value.words = 'Great to have a friend!'
+    } else {
+        errors.value.words = null;
+    }
   };
     
 </script>
