@@ -61,9 +61,14 @@
                         <label for="reason" class="form-label">Reason for joining</label>
                         <textarea class="form-control" id="reason" rows="3" 
                         @blur="() => validateReason(true)"
-                        @input="() => validateReason(false)"
+                        @input="() => {validateReason(false), validateReasonWord(true)}"
                         v-model="formData.reason"></textarea>
                         <div v-if="errors.reason" class="text-danger">{{ errors.reason }}</div>
+                        <div v-if="errors.words" style="color: green;">{{errors.words}}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Suburb</label>
+                        <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -95,7 +100,8 @@ import Column from 'primevue/column';
       confirmPassword: '',
       isAustralian: false,
       reason: '',
-      gender: ''
+      gender: '',
+      suburb: 'Clayton'
   });
   
   const submittedCards = ref([]);
@@ -132,6 +138,7 @@ import Column from 'primevue/column';
     resident: null,
     gender: null,
     reason: null,
+    words: null
   });
 
   const validateName = (blur) => {
@@ -200,24 +207,17 @@ import Column from 'primevue/column';
     }
 
   };
+
+
+  const validateReasonWord = (blur) => {
+    if (formData.value.reason.includes('friend')) {
+        if (blur) errors.value.words = 'Great to have a friend!'
+    } else {
+        errors.value.words = null;
+    }
+  };
     
 </script>
-<style scoped>
 
-   .card {
-   border: 1px solid #ccc;
-   border-radius: 10px;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   }
-   .card-header {
-   background-color: #275FDA;
-   color: white;
-   padding: 10px;
-   border-radius: 10px 10px 0 0;
-   }
-   .list-group-item {
-   padding: 10px;
-   }
-</style>
 
 
