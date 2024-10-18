@@ -1,17 +1,8 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store/store'
-import PrimeVue from 'primevue/config'
-import Aura from '@primevue/themes/aura'
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
+import { getFirestore } from "firebase/firestore"
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA-XQm8aSNVjmPCGVkDtZbWIqWOIEBxVN4",
@@ -24,9 +15,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
-
-const app = createApp(App)
-app.use(PrimeVue, { theme: { preset: Aura } })
-app.use(router)
-app.use(store)
-app.mount('#app')
+const db = getFirestore()
+export default db
