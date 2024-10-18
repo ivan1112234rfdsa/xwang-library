@@ -9,7 +9,7 @@ import AddBookView from '@/views/AddBookView.vue';
 import BookList from '@/components/BookList.vue';
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory("/xwang-library/"),
   routes: [
     {
       path: '/',
