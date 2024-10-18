@@ -48,14 +48,6 @@ const router = createRouter({
     }
   ]
 })
-/* router.beforeEach((to, from, next) => {
-    if (!store.state.isAuthenticated && to.name !== 'Login') {
-        return ({ name: 'Login' })
-    } else {
-        next();
-    }
-});
-*/
 
 
 
