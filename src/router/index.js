@@ -8,47 +8,45 @@ import AdminView from '@/views/AdminView.vue';
 import AddBookView from '@/views/AddBookView.vue';
 import BookList from '@/components/BookList.vue';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: AboutView,
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: LoginView
-  },
-  {
-    path: '/FireLogin',
-    name: 'FireLogin',
-    component: FirebaseSigninView
-  },
-  {
-    path: '/Admin',
-    name: 'Admin',
-    component: AdminView
-  },
-  {
-    path: '/Addbook',
-    name: 'Addbook',
-    component: AddBookView
-  },
-  {
-    path: '/bookList',
-    name: 'BookList',
-    component: BookList
-  }
-]
-
 const router = createRouter({
-  history: createWebHistory(),
-  routes
+  history: createWebHistory(process.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: HomeView
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: AboutView,
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: LoginView
+    },
+    {
+      path: '/FireLogin',
+      name: 'FireLogin',
+      component: FirebaseSigninView
+    },
+    {
+      path: '/Admin',
+      name: 'Admin',
+      component: AdminView
+    },
+    {
+      path: '/Addbook',
+      name: 'Addbook',
+      component: AddBookView
+    },
+    {
+      path: '/bookList',
+      name: 'BookList',
+      component: BookList
+    }
+  ]
 })
 /* router.beforeEach((to, from, next) => {
     if (!store.state.isAuthenticated && to.name !== 'Login') {
